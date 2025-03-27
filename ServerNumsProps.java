@@ -177,7 +177,7 @@ public class ServerNumsProps {
                 DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
 
                 try {
-                        String message = input.readUTF();
+                        String respond = input.readUTF();
                         System.out.println("Nhận: " + message);
                     } catch (EOFException e) {
                         System.err.println("Client ngắt kết nối.");
