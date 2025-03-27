@@ -1,5 +1,4 @@
 // package chat;
-
 // import java.io.DataInputStream;
 // import java.io.DataOutputStream;
 // import java.io.IOException;
@@ -7,9 +6,7 @@
 // import java.net.Socket;
 // import java.util.HashMap;
 // import java.util.Map;
-
 // public class ServerNumsProps {
-
 //     // Bài 1 Kiểm tra các thuộc tính của số
 //     static String checkNumberProperties(int num) {
 //         return (num + (isPrime(num) ? " là số nguyên tố.\n" : " không phải số nguyên tố.\n")
@@ -17,7 +14,6 @@
 //                 + num + (isPerfectNumber(num) ? " là số hoàn hảo.\n" : " không phải số hoàn hảo.\n")
 //                 + num + (isArmstrong(num) ? " là số Armstrong." : " không phải số Armstrong."));
 //     }
-
 //     // Kiểm tra số nguyên tố
 //     static boolean isPrime(int num) {
 //         if (num < 2) {
@@ -31,13 +27,11 @@
 //         }
 //         return true;
 //     }
-
 //     // Kiểm tra số chính phương
 //     static boolean isPerfectSquare(int num) {
 //         int sqrt = (int) Math.sqrt(num);
 //         return sqrt * sqrt == num;
 //     }
-
 //     // Kiểm tra số hoàn hảo
 //     static boolean isPerfectNumber(int num) {
 //         int sum = 1;
@@ -49,7 +43,6 @@
 //         }
 //         return sum == num;
 //     }
-
 //     // Kiểm tra số Armstrong
 //     static boolean isArmstrong(int num) {
 //         int sum = 0, temp = num, digits = String.valueOf(num).length();
@@ -60,7 +53,6 @@
 //         }
 //         return sum == num;
 //     }
-
 //     static Boolean isNumeric(String num) {
 //         try {
 //             Integer.parseInt(num);
@@ -69,7 +61,6 @@
 //             return false;
 //         }
 //     }
-
 //     // Bài 2 Tính tổng và tích các chữ số của số nguyên dương
 //     static String sumAndProductOfDigits(int num) {
 //         int sum = 0, product = 1;
@@ -82,14 +73,12 @@
 //         }
 //         return ("Tổng: " + sum + ", Tích: " + product);
 //     }
-
 //     // Bài 3 Tìm ước chung lớn nhất và bội chung nhỏ nhất
 //     static String findGCDandLCM(int a, int b) {
 //         int gcd = gcd(a, b);
 //         int lcm = (a * b) / gcd;
 //         return ("Ước chung lớn nhất: " + gcd + "\nBội chung nhỏ nhất: " + lcm);
 //     }
-
 //     //Hàm tính UCLN bằng thuật toán Euclid
 //     static int gcd(int a, int b) {
 //         while (b != 0) {
@@ -99,12 +88,10 @@
 //         }
 //         return a;
 //     }
-
 //     // Bài 4 Đảo ngược chuỗi
 //     static String reverseString(String str) {
 //         return ("Chuỗi đảo ngược: " + new StringBuilder(str).reverse());
 //     }
-
 //     // Xử lý chuỗi theo yêu cầu bài 5
 //     static String processString(String str) {
 //         return "Chuỗi đảo ngược: " + new StringBuilder(str).reverse() + "\n"
@@ -115,7 +102,6 @@
 //                 +//lấy độ dài chuỗi đã tách khoảng cách bất cứ trắng (\\s), có thể nhiều hơn 1(+)
 //                 "Nguyên âm có trong chuỗi: " + extractVowels(str);
 //     }
-
 //     // Hoán đổi chữ hoa thành chữ thường và ngược lại
 //     static String swapCase(String str) {
 //         StringBuilder result = new StringBuilder();
@@ -124,12 +110,10 @@
 //         }
 //         return result.toString();
 //     }
-
 //     // Lấy nguyên âm từ chuỗi
 //     static String extractVowels(String str) {
 //         return str.replaceAll("(?i)[^aeiou]", "");//loại bỏ các kí tự không phải nguyên âm sau khi bật chế độ không phân biệt hoa thường
 //     }
-
 //     // Xử lý chuỗi theo yêu cầu bài 6
 //     static String processText(String str) {
 //         StringBuilder sb = new StringBuilder();
@@ -137,7 +121,6 @@
 //         for (String word : str.split("\\s+")) {
 //             sb.append(word + "\n");
 //         }
-
 //         sb.append("Bảng tần số ký tự:\n");
 //         Map<Character, Integer> frequencyMap = new HashMap<>();
 //         for (char c : str.toCharArray()) {
@@ -148,17 +131,14 @@
 //         }
 //         return sb.toString();
 //     }
-
 //     public static void main(String[] args) throws IOException {
 //         ServerSocket serverSocket = new ServerSocket(2025);
 //         Socket socket = serverSocket.accept();
 //         DataInputStream din = new DataInputStream(socket.getInputStream());
 //         DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
 //         Boolean stop = false;
-
 //         while (!stop) {
 //             String response = din.readUTF();
-
 //             if (isNumeric(response) == true) {
 //                 dos.writeUTF("Input là số\n" + checkNumberProperties(Integer.parseInt(response)) + "\n" + sumAndProductOfDigits(Integer.parseInt(response)));
 //             } else {
@@ -170,22 +150,19 @@
 //                 } catch (Exception e) {
 //                     dos.writeUTF("Input là chuỗi\n" + reverseString(response) + "\n" + processString(response) + "\n" + processText(response));
 //                 }
-
 //             }
-
 //             dos.flush();
 //         }
 //         socket.close();
 //     }
 // }
-package chat;
-
 import java.io.*;
 import java.net.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ServerNumsProps {
+
     public static void main(String[] args) {
         try {
             // Render assigns a dynamic port via an environment variable
@@ -239,9 +216,13 @@ public class ServerNumsProps {
     }
 
     static boolean isPrime(int num) {
-        if (num < 2) return false;
+        if (num < 2) {
+            return false;
+        }
         for (int i = 2; i <= Math.sqrt(num); i++) {
-            if (num % i == 0) return false;
+            if (num % i == 0) {
+                return false;
+            }
         }
         return true;
     }
@@ -254,7 +235,9 @@ public class ServerNumsProps {
     static boolean isPerfectNumber(int num) {
         int sum = 1;
         for (int i = 2; i <= num / 2; i++) {
-            if (num % i == 0) sum += i;
+            if (num % i == 0) {
+                sum += i;
+            }
         }
         return sum == num;
     }
