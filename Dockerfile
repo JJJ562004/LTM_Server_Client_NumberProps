@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Compile the Java files (change this if using packages)
-RUN javac -d out src/chat/ServerNumsProps.java
+RUN javac -d out ServerNumsProps.java
 
 # Set classpath and run the Java application
-CMD ["java", "-cp", "out", "chat.ServerNumsProps"]
+CMD ["java", "-cp", "out", "ServerNumsProps"]
