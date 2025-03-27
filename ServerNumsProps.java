@@ -162,12 +162,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ServerNumsProps {
-
     public static void main(String[] args) {
         try {
-            // Render assigns a dynamic port via an environment variable
             int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "2025"));
-
             ServerSocket serverSocket = new ServerSocket(port, 50, InetAddress.getByName("0.0.0.0"));
             System.out.println("Cổng server: " + port);
 
@@ -176,35 +173,41 @@ public class ServerNumsProps {
                 DataInputStream din = new DataInputStream(socket.getInputStream());
                 DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
 
-                try {
-                        String response = din.readUTF();
-                        System.out.println("Nhận: " + response);
-                    } catch (EOFException e) {
-                        System.err.println("Client ngắt kết nối.");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                String response = ""; // Declare response outside the try-catch
 
-                if (isNumeric(response)) {
-                    int number = Integer.parseInt(response);
-                    dos.writeUTF("Input là số\n" + checkNumberProperties(number) + "\n" + sumAndProductOfDigits(number));
-                } else {
-                    try {
-                        String[] numbers = response.split(",");
-                        int a = Integer.parseInt(numbers[0]);
-                        int b = Integer.parseInt(numbers[1]);
-                        dos.writeUTF(findGCDandLCM(a, b));
-                    } catch (Exception e) {
-                        dos.writeUTF("Input là chuỗi\n" + reverseString(response) + "\n" + processString(response) + "\n" + processText(response));
-                    }
+                try {
+                    response = din.readUTF(); // Assign value to response
+                    System.out.println("Nhận: " + response);
+                } catch (EOFException e) {
+                    System.err.println("Client ngắt kết nối.");
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                dos.flush();
-                socket.close(); // Close connection after each request
+
+                if (!response.isEmpty()) { // Ensure response is valid before processing
+                    if (isNumeric(response)) {
+                        int number = Integer.parseInt(response);
+                        dos.writeUTF("Input là số\n" + checkNumberProperties(number) + "\n" + sumAndProductOfDigits(number));
+                    } else {
+                        try {
+                            String[] numbers = response.split(",");
+                            int a = Integer.parseInt(numbers[0]);
+                            int b = Integer.parseInt(numbers[1]);
+                            dos.writeUTF(findGCDandLCM(a, b));
+                        } catch (Exception e) {
+                            dos.writeUTF("Input là chuỗi\n" + reverseString(response) + "\n" + processString(response) + "\n" + processText(response));
+                        }
+                    }
+                    dos.flush();
+                }
+                socket.close();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+}
+
 
     static boolean isNumeric(String num) {
         try {
@@ -325,4 +328,5 @@ public class ServerNumsProps {
         }
         return sb.toString();
     }
+}
 }
