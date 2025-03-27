@@ -169,14 +169,21 @@ public class ServerNumsProps {
             int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "2025"));
 
             ServerSocket serverSocket = new ServerSocket(port, 50, InetAddress.getByName("0.0.0.0"));
-            System.out.println("Server started on port: " + port);
+            System.out.println("Cổng server: " + port);
 
             while (true) {
                 Socket socket = serverSocket.accept();
                 DataInputStream din = new DataInputStream(socket.getInputStream());
                 DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
 
-                String response = din.readUTF();
+                try {
+                        String message = input.readUTF();
+                        System.out.println("Nhận: " + message);
+                    } catch (EOFException e) {
+                        System.err.println("Client ngắt kết nối.");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
                 if (isNumeric(response)) {
                     int number = Integer.parseInt(response);
