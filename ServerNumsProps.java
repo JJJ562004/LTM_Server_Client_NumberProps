@@ -178,7 +178,7 @@ public class ServerNumsProps {
 
                 try {
                         String response = din.readUTF();
-                        System.out.println("Nhận: " + message);
+                        System.out.println("Nhận: " + response);
                     } catch (EOFException e) {
                         System.err.println("Client ngắt kết nối.");
                     } catch (IOException e) {
