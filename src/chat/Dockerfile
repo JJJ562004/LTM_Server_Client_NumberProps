@@ -4,11 +4,11 @@ FROM openjdk:17-jdk-slim
 # Set working directory
 WORKDIR /app
 
-# Copy all Java files to the container
+# Copy all project files to the container
 COPY . .
 
-# Compile the Java server file
-RUN javac src/chat/ServerNumsProps.java
+# Compile the Java files (change this if using packages)
+RUN javac -d out src/chat/ServerNumsProps.java
 
-# Run the Java application
-CMD ["java", "src.chat.ServerNumsProps"]
+# Set classpath and run the Java application
+CMD ["java", "-cp", "out", "chat.ServerNumsProps"]
